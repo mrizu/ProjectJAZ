@@ -1,12 +1,66 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Demokracja</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>DemokracjaInfo</title>
+    <link rel="stylesheet" href="main.css" />
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=GLvfZh285X9khj2XS02osjRE14V3qMMqdwpDqHWG6rfnJiSm0ViKwYtS54Zz1l4OzbI6kQ0Ryz8RwO_hnQ71g-6jBcNwzhkutZ9rXrTk__Wq3LrApnwXxJeCrQwB7MsiOY273soUnvHTuk3hw8jYJA" charset="UTF-8"></script></head>
 <body>
-<h1>Siema</h1>
+<noscript>
+    <h2>Sorry! Your browser doesn't support Javascript</h2>
+</noscript>
+    <div th:text="${name}" id="username_text"></div>
+<div id="poll-list-page">
+    <h2>Survey</h2>
+    <p>Na którą partie oddałbyś głos jeśli wybory odbyły by sie dziś?</p>
+    <hr />
+        <input type="radio" id="pis" name="drone" value="choice" checked>
+        <label for="pis">Prawo i Sprawiedliwość</label>
+        <br />
+        <input type="radio" id="po" name="drone" value="choice">
+        <label for="po">Platforma Obywatlska</label>
+        <br />
+        <input type="radio" id="nl" name="drone" value="choice">
+        <label for="nl">Nowa Lewica</label>
+        <br />
+        <input type="radio" id="psl" name="drone" value="choice">
+        <label for="psl">Polskie Stronnictwo Ludowe</label>
+        <br />
+        <input type="radio" id="konfederacja" name="drone" value="choice">
+        <label for="konfederacja">Konfederacja</label>
+        <br />
+        <input type="radio" id="p2050" name="drone" value="choice">
+        <label for="p2050">Polska 2050</label>
+        <br />
+        <br />
+
+        <button style="width: 100%;">VOTE</button>
+</div>
+
+<div id="chat-page">
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat</h2>
+        </div>
+        <div class="connecting" id="connecting">
+            Connecting...
+        </div>
+        <ul id="messageArea">
+
+        </ul>
+        <form id="messageForm" name="messageForm">
+            <div class="form-group">
+                <div class="input-group clearfix">
+                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                    <button type="submit" class="primary">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

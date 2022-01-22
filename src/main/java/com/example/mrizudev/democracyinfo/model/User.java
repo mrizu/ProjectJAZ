@@ -9,7 +9,6 @@ public class User {
     private int id;
     private String username;
     private String HMAC512_HASH;
-    private String jwt_token;
     private String email;
     private int party_id;
 
@@ -42,17 +41,7 @@ public class User {
     public void setHMAC512_HASH(String HMAC512_HASH) {
         this.HMAC512_HASH = HMAC512_HASH;
     }
-
-    @Basic
-    @Column(name = "jwt_token")
-    public String getJwt_token() {
-        return jwt_token;
-    }
-
-    public void setJwt_token(String jwt_token) {
-        this.jwt_token = jwt_token;
-    }
-
+    
     @Basic
     @Column(name = "email")
     public String getEmail() {

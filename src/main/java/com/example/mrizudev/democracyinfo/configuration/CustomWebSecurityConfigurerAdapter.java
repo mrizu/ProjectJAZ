@@ -10,10 +10,12 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
     protected void configure(final HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                .loginPage("/login")
-//                .failureUrl("/login-error.html")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/index.html");
+                .loginPage("/logging")
+                .loginProcessingUrl("/perform_login")
+                .defaultSuccessUrl("/homepage.html",true);
+//                .failureUrl("/login.html?error=true")
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/index.html");
     }
 }
