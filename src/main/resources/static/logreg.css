@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-image: url('https://www-cdn.najah.edu/media/filer_public_thumbnails/filer_public/db/26/db26f4cc-9f9f-4779-be5c-4dce0c1d06ee/a_orig_polling2_151102nbcnews-ux-1080-600.jpg__1320x740_q95_crop_subsampling-2_upscale.jpg');
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100vh;
+    background-color: #8383ff;
+    opacity: 0.9;
+
+    padding: 15px 30px;
+}
+
+.container input, .container select {
+    width: 80%;
+    border-radius: 6px 9px 9px 6px;
+    margin-top: 12px;
+    margin-left: -2px;
+    margin-bottom: 2px;
+    transition: 0.35s;
+    padding: 6px;
+    border: 2px solid #5151c6;
+}
+.container select {
+    height: auto;
+}
+
+.container input:hover, .container select:hover {
+    width: 100%;
+}
+
+.container .input-title {
+    font-size: 14px;
+}
+
+.container .button {
+    height: 40px;
+    width: auto;
+    margin-top: 40px;
+    text-align: left;
+    border: 0;
+    background: none;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+.container .bottom-space .button {
+    margin-top: 0px;
+    margin-left: -10px;
+}
+.container .bottom-space .button:hover {
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+.container .button:hover {
+    width: auto;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.container a {
+    color: black;
+    text-decoration: none;
+
+}
+
+.bottom-space {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    padding: 15px 30px;
+}
+
+.bottom-space h1 {
+    font-size: 32px;
+}
+
+.bottom-space span {
+    font-size: 18px;
+}

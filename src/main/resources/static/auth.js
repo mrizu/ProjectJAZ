@@ -20,7 +20,7 @@ function getCookie(name) {
 
 window.addEventListener('DOMContentLoaded', (event) => {
     if (getCookie("error_authenticating") == null || getCookie("error_authenticating") == "false") {
-        document.getElementById("error").style.visibility = "hidden";
+        document.getElementById("error").style.display = "none";
     } else {
         document.getElementById("error").style.visibility = "visible";
         document.cookie = "error_authenticating=false"

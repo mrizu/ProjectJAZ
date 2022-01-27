@@ -3,43 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Mochiy+Pop+P+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="logreg.css" />
 </head>
 <body>
-<form th:action="@{/register}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" /> <br />
-    <label for="repeatPassword">Repeat password:</label>
-    <input type="password" id="repeatPassword" name="repeatPassword" /> <br />
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" name="email" /> <br />
-    <label for="party">Preferred party:</label>
-    <select id="party" name="party">
-        <option>Prawo i Sprawiedliwość</option>
-        <option>Platforma Obywatelska</option>
-        <option>Nowa Lewica</option>
-        <option>Polskie Stronnictwo Ludowe</option>
-        <option>Konfederacja</option>
-        <option>Polska 2050</option>
-        <option>Inna</option>
-    </select>
-    <input type="submit" value="Register" id="submitRegistrationButton" disabled />
-</form>
-<div id="alert" style="display: none; color: red;">Passwords do not match</div>
-<div id="error" style="visibility: hidden">User with such username or email already exists</div>
+<div class="container">
+    <h1>Register</h1>
+    <p>Creater your brand-new account.
+        <br />It is and it always will be <b>free</b>.
+    </p>
+    <form th:action="@{/register}" method="post">
+        <input type="text" id="username" name="username" autofocus="autofocus" /><br />
+        <span class="input-title">Username</span>
+        <br />
+        <input type="password" id="password" name="password" /><br />
+        <span class="input-title">Password</span>
+        <br />
+        <input type="password" id="repeatPassword" name="repeatPassword" /><br />
+        <span class="input-title">Repeat password</span>
+        <br />
+        <input type="email" id="email" name="email" /><br />
+        <span class="input-title">Email</span>
+        <br />
+        <select id="party" name="party">
+            <option>Prawo i Sprawiedliwość</option>
+            <option>Platforma Obywatelska</option>
+            <option>Nowa Lewica</option>
+            <option>Polskie Stronnictwo Ludowe</option>
+            <option>Konfederacja</option>
+            <option>Polska 2050</option>
+            <option>Inna</option>
+        </select>
+        <br />
+        <span class="input-title">Preferred party</span>
+        <br />
+        <input class="button" type="submit" id="submitRegistrationButton" value="Register ->" />
+    </form>
+    <div id="alert" style="display: none; color: red;">Passwords do not match</div>
+    <div id="error" style="display: none; color: red;">There was an error while register</div>
+
+    <div class="bottom-space">
+        <h1>Already have an account?</h1>
+        <a href="login"><input class="button" value="Just log in ->" /></a>
+    </div>
+</div>
 <script>
-document.getElementById("repeatPassword").addEventListener('input', (event) => {
-    let firstPass = document.getElementById("password").value;
-    let secondPass = document.getElementById("repeatPassword").value;
-    if (firstPass !== secondPass) {
-        document.getElementById("alert").style.display = "inline";
-        document.getElementById('submitRegistrationButton').disabled = true;
-    } else {
-        document.getElementById("alert").style.display = "none";
-        document.getElementById('submitRegistrationButton').disabled = false;
-    }
-});
+    document.getElementById("repeatPassword").addEventListener('input', (event) => {
+        let firstPass = document.getElementById("password").value;
+        let secondPass = document.getElementById("repeatPassword").value;
+        if (firstPass !== secondPass) {
+            document.getElementById("alert").style.display = "inline";
+            document.getElementById('submitRegistrationButton').disabled = true;
+        } else {
+            document.getElementById("alert").style.display = "none";
+            document.getElementById('submitRegistrationButton').disabled = false;
+        }
+    });
 </script>
 <script src="auth.js"></script>
 </body>

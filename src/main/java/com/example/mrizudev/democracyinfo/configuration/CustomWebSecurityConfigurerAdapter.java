@@ -13,9 +13,5 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
                 .loginPage("/logging")
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/homepage.html",true);
-//                .failureUrl("/login.html?error=true")
-//                .and()
-//                .logout()
-//                .logoutSuccessUrl("/index.html");
     }
 }

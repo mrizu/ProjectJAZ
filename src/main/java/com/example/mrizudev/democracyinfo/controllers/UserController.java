@@ -1,21 +1,16 @@
 package com.example.mrizudev.democracyinfo.controllers;
 
-
 import com.example.mrizudev.democracyinfo.services.UserService;
 import com.example.mrizudev.democracyinfo.handlers.JwtHandler;
+import com.example.mrizudev.democracyinfo.services.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.nio.charset.StandardCharsets;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Locale;
 
 @Controller
 public class UserController {
@@ -46,7 +41,7 @@ public class UserController {
             return "login";
         } else {
             response.addCookie(new Cookie("Bearer", message));
-            return "index";
+            return "redirect:/index";
         }
     }
 
@@ -74,13 +69,13 @@ public class UserController {
             ) {
                 if (username.equals("") || password.equals("") || email.equals("")) {
                     response.addCookie(new Cookie("error_authenticating", "true"));
-                    return "register";
+                    return "redirect:/index";
                 }
                 try {
                     userService.register(username, password, email, party_name);
                     String message = userService.authenticate(username, password);
                     response.addCookie(new Cookie("Bearer", message));
-                    return "index";
+                    return "redirect:/index";
                 } catch (Exception e) {
                     response.addCookie(new Cookie("error_authenticating", "true"));
                     return "register";

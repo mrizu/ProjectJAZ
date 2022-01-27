@@ -7,6 +7,10 @@
 html,body {
     height: 100%;
     overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        background-image: url('https://media.istockphoto.com/photos/presidential-election-day-voting-concept-picture-id611606520?k=20&m=611606520&s=612x612&w=0&h=89AkamLpEmiV-kguVzVGQMYnzzzZlRkJ53WKt15-5cM=');
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
 }
 
 body {
@@ -76,24 +80,6 @@ button {
     min-height: 38px;
 }
 
-/*button.default {
-    background-color: #e8e8e8;
-    color: #333;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-}
-
-button.primary {
-    background-color: #128ff2;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
-}
-
-button.accent {
-    background-color: #ff4743;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
-}*/
-
 #poll-list-page {
     width: 300px;
 
@@ -104,6 +90,7 @@ button.accent {
     border-radius: 8px;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     color: white;
+    opacity: 0.9;
     float: left;
 }
 
@@ -111,30 +98,17 @@ button.accent {
 
 }
 
-/*.poll-list-element {
-    width: 100%;
-    height: 100px;
-    background-color: white;
-    color: black;
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    float: left;
-}
-
-.poll-list-element-subtitle {
-    font-size: 14px;
-    font-style: italic;
-}*/
-
 #chat-page {
     height: 100%;
+    opacity: 0.9;
+    margin-left: 350px;
+    padding-right: 120px;
 }
 
 .chat-container {
 /*     max-width: 700px; */
     margin-left: 60px;
-    width: calc(100% - 400px);
+    width: 100%;
     background-color: gray;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 8px;
@@ -245,49 +219,65 @@ button.accent {
     width: 100%;
 }
 
+.user-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 12px;
+    background-color: #ececec;
+    border-radius: 8px;
+    text-align: center;
+}
 
-/*@media screen and (max-width: 730px) {
+.user-panel .container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 40px;
+    float: left;
+}
 
-    .chat-container {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 10px;
-    }
-}*/
+.user-panel .button {
+    position: absolute;
+    bottom: 0px;
+    left: -10px;
+    width: auto;
+    margin-top: 40px;
+    text-align: left;
+    border: 0;
+    background: none;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    transition: 0.35s;
+    cursor: pointer;
+}
 
-/*@media screen and (max-width: 480px) {
-    .chat-container {
-        height: calc(100% - 30px);
-    }
+.user-panel .bottom-space .button {
+    margin-top: 0px;
+    margin-left: -10px;
+}
+.user-panel .bottom-space .button:hover {
+    margin-top: 0px;
+    margin-left: 0px;
+}
 
-    .username-page-container {
-        width: auto;
-        margin-left: 15px;
-        margin-right: 15px;
-        padding: 25px;
-    }
 
-    #chat-page ul {
-        height: calc(100% - 120px);
-    }
+.user-panel .button:hover {
+    width: auto;
+    font-weight: bold;
+    margin-left: 10px;
+}
 
-    #messageForm .input-group button {
-        width: 65px;
-    }
+.bar {
+    width: 100%;
+    height: 30px;
+    background-color: gray;
+    border-radius: 0px;
+    overflow: hidden;
+    float: left;
+}
 
-    #messageForm .input-group input {
-        width: calc(100% - 70px);
-    }
-
-    .chat-header {
-        padding: 10px;
-    }
-
-    .connecting {
-        top: 60px;
-    }
-
-    .chat-header h2 {
-        font-size: 1.1em;
-    }
-}*/
+.bar-filled {
+    height: 100%;
+    border-radius: 0 8px 8px 0px;
+    background-color: silver;
+}

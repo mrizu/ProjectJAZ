@@ -2,6 +2,7 @@ package com.example.mrizudev.democracyinfo.controllers;
 
 import com.example.mrizudev.democracyinfo.handlers.JwtHandler;
 import com.example.mrizudev.democracyinfo.model.ChatMessage;
+import com.example.mrizudev.democracyinfo.repositories.UserRepository;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -9,6 +10,9 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ChatController {
     @MessageMapping("/chat.sendMessage")

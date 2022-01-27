@@ -2,39 +2,56 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Mochiy+Pop+P+One&display=swap" rel="stylesheet">
     <title>DemokracjaInfo</title>
     <link rel="stylesheet" href="main.css" />
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=GLvfZh285X9khj2XS02osjRE14V3qMMqdwpDqHWG6rfnJiSm0ViKwYtS54Zz1l4OzbI6kQ0Ryz8RwO_hnQ71g-6jBcNwzhkutZ9rXrTk__Wq3LrApnwXxJeCrQwB7MsiOY273soUnvHTuk3hw8jYJA" charset="UTF-8"></script></head>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <body>
 <noscript>
     <h2>Sorry! Your browser doesn't support Javascript</h2>
 </noscript>
-    <div th:text="${name}" id="username_text"></div>
+<div id="pollData" style="display: none;" th:text="${pollResults}"></div>
+<div class="user-panel">
+    <div class="container">
+        Logged as <b><span th:text="${name}" id="username_text"></span></b>
+        <br />
+        <a href="logout"><input class="button" value="logout ->" /></a>
+    </div>
+</div>
 <div id="poll-list-page">
     <h2>Survey</h2>
-    <p>Na którą partie oddałbyś głos jeśli wybory odbyły by sie dziś?</p>
-    <hr />
-        <input type="radio" id="pis" name="drone" value="choice" checked>
+    <form th:action="@{/vote}" method="post" style="display: block" id="poll">
+        <p>Na którą partie oddałbyś głos jeśli wybory odbyły by sie dziś?</p>
+        <label for="poll_id">
+            <input id="poll_id" type="text" name="poll_id" value="1" style="display: none"/>
+        </label>
+        <hr />
+        <input type="radio" id="pis" name="choice" value="1" checked>
         <label for="pis">Prawo i Sprawiedliwość</label>
         <br />
-        <input type="radio" id="po" name="drone" value="choice">
-        <label for="po">Platforma Obywatlska</label>
+        <input type="radio" id="po" name="choice" value="2">
+        <label for="po">Platforma Obywatelska</label>
         <br />
-        <input type="radio" id="nl" name="drone" value="choice">
+        <input type="radio" id="nl" name="choice" value="3">
         <label for="nl">Nowa Lewica</label>
         <br />
-        <input type="radio" id="psl" name="drone" value="choice">
+        <input type="radio" id="psl" name="choice" value="4">
         <label for="psl">Polskie Stronnictwo Ludowe</label>
         <br />
-        <input type="radio" id="konfederacja" name="drone" value="choice">
+        <input type="radio" id="konfederacja" name="choice" value="5">
         <label for="konfederacja">Konfederacja</label>
         <br />
-        <input type="radio" id="p2050" name="drone" value="choice">
+        <input type="radio" id="p2050" name="choice" value="6">
         <label for="p2050">Polska 2050</label>
         <br />
         <br />
-
         <button style="width: 100%;">VOTE</button>
+    </form>
+    <div id="pollResults" style="display: none">
+
+    </div>
+    <canvas id="myChart" style="width:100%;min-width:600px; min-height:300px;"></canvas>
 </div>
 
 <div id="chat-page">
@@ -62,5 +79,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="main.js"></script>
+<script src="poll.js"></script>
+
 </body>
 </html>

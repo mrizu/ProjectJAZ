@@ -1,29 +1,18 @@
 'use strict';
 
-var usernamePage = document.querySelector('#username-page'); // tego nie ma
 var chatPage = document.getElementById('chat-page');
-var usernameForm = document.querySelector('#usernameForm'); // nie ma
 var messageForm = document.getElementById('messageForm');
 var messageInput = document.getElementById('message');
 var messageArea = document.getElementById('messageArea');
 var connectingElement = document.getElementById('connecting');
 
 var stompClient = null;
-var username = null;
-
-var colors = [
-    '#2196F3', '#32c787', '#00bcd4', '#ff5652',
-    '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
-];
 
 function connect(username) {
     if(username) {
-        // usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
-
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
-
         stompClient.connect({}, onConnected, onError);
     }
 }
@@ -99,17 +88,6 @@ function onMessageReceived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
-
-function getAvatarColor(messageSender) {
-    var hash = 0;
-    for (var i = 0; i < messageSender.length; i++) {
-        hash = 31 * hash + messageSender.charCodeAt(i);
-    }
-    var index = Math.abs(hash % colors.length);
-    return colors[index];
-}
-
-// usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
 
 

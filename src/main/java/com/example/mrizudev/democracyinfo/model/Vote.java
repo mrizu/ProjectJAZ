@@ -9,7 +9,6 @@ import javax.persistence.Id;
 public class Vote {
     private int id;
     private int user_id;
-    private int poll_id;
     private int option_id;
 
     @Id
@@ -32,15 +31,6 @@ public class Vote {
         this.user_id = user_id;
     }
 
-    @Basic
-    @Column(name="poll_id")
-    public int getPoll_id() {
-        return poll_id;
-    }
-
-    public void setPoll_id(int poll_id) {
-        this.poll_id = poll_id;
-    }
 
     @Basic
     @Column(name="option_id")

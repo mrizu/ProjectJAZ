@@ -3,13 +3,8 @@ package com.example.mrizudev.democracyinfo.services;
 import com.example.mrizudev.democracyinfo.model.User;
 import com.example.mrizudev.democracyinfo.repositories.UserRepository;
 import com.example.mrizudev.democracyinfo.handlers.JwtHandler;
-
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,27 +12,17 @@ import javax.transaction.Transactional;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
-import java.sql.Date;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.Formatter;
 import java.util.List;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 
 
 @Component
 public class UserService {
     public static final int USER_COLUMN_ID = 0;
-    public static final int USER_COLUMN_JWT_TOKEN = 3;
-    public static final int USER_COLUMN_PARTY_ID = 5;
-    public static final int PARTY_COLUMN_NAME = 1;
-
 
     @PersistenceContext
     EntityManager entityManager;
     UserRepository userRepository;
-//    PartyRepository partyRepository;
 
     @Autowired
     public UserService(UserRepository userRepository){
@@ -104,9 +89,7 @@ public class UserService {
         Query query = entityManager.createNativeQuery(queryBody);
         query.setParameter("party_name", party_name);
         List<Object[]> res = query.getResultList();
-        System.out.println(res.size());
         if (res.size() == 1) {
-            System.out.println(res.get(0)[0].toString());
             return (int) res.get(0)[0];
         } else {
             return -1;
@@ -119,7 +102,6 @@ public class UserService {
        query.setParameter("username", login);
        List<Object[]> res = query.getResultList();
        if (res.size() == 1) {
-           // int partyId = (int) res.get(0)[UserService.USER_COLUMN_PARTY_ID];
            return res.get(0)[1].toString();
        }
        return "No party";
@@ -132,7 +114,6 @@ public class UserService {
         query.setParameter("username", login);
         List<Object[]> res = query.getResultList();
         if (res.size() == 1) {
-            // int partyId = (int) res.get(0)[UserService.USER_COLUMN_PARTY_ID];
             return res.get(0)[3].toString();
         }
         return "#000000";
