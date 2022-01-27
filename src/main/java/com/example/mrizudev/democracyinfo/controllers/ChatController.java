@@ -15,9 +15,18 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ChatController {
+    @PersistenceContext
+    EntityManager entityManager;
+
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+    public ChatMessage sendMessage(
+            @Payload ChatMessage chatMessage,
+            SimpMessageHeaderAccessor headerAccessor
+    ) {
+        String sender = chatMessage.getSender();
+        String senderColor = JwtHandler.getPartyColorByUsername(entityManager, sender);
+        chatMessage.setSender("{\"sender\":\"" + sender + "\", \"color\":\""+senderColor+"\"}");
         return chatMessage;
     }
 
@@ -27,7 +36,9 @@ public class ChatController {
                                SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("sender", chatMessage.getSender());
-        //headerAccessor.getSessionAttributes().put("color", new JwtHandler().getPartyColorByUsername(chatMessage.getSender()));
+        String sender = chatMessage.getSender();
+        String senderColor = JwtHandler.getPartyColorByUsername(entityManager, sender);
+        chatMessage.setSender("{\"sender\":\"" + sender + "\", \"color\":\""+senderColor+"\"}");
         return chatMessage;
     }
 }

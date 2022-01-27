@@ -16,6 +16,8 @@ import java.util.Locale;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    VoteService voteService;
 
     @GetMapping("/login")
     public String displayLogin(
@@ -49,7 +51,7 @@ public class UserController {
     public String displayRegister(
             HttpServletRequest request
     ) {
-        if (JwtHandler.verifyToken(request)) return "index";
+        if (JwtHandler.verifyToken(request)) return "redirect:/index";
         return "register";
     }
 
@@ -91,6 +93,8 @@ public class UserController {
         String name = JwtHandler.getUsername(JwtHandler.getJwtToken(request));
         if (name == null) return "login";
         model.addAttribute("name", name);
+        String pollData = voteService.getPollResults();
+        model.addAttribute("pollResults", pollData);
         return "index";
     }
 

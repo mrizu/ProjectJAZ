@@ -39,13 +39,12 @@ public class JwtHandler {
         String secret = System.getenv("JAZProjectSecret");
         System.out.println(secret);
         Date exp = new Date(System.currentTimeMillis() + (1000 * 900));
-        String token = Jwts.builder()
+        return Jwts.builder()
                 .setSubject(subject)
                 .claim("auth", auth)
                 .setExpiration(exp)
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
-        return token;
     }
 
     public static boolean verifyToken(HttpServletRequest request) {
@@ -60,21 +59,6 @@ public class JwtHandler {
             return !body.getExpiration().before(new Date(System.currentTimeMillis()));
         } catch (Exception e) {
             return false;
-        }
-    }
-
-    public static String getParty(String token) {
-        try {
-            if (Objects.equals(token, "None")) return null;
-            String secret = "7333637233745f6b33795f6b3472306c";
-            Claims body = Jwts.parser()
-                .setSigningKey(secret)
-                .parseClaimsJws(token)
-                .getBody();
-            if (body.getExpiration().before(new Date(System.currentTimeMillis()))) return null;
-            return body.getSubject();
-        } catch (Exception e) {
-            return null;
         }
     }
 
@@ -108,7 +92,7 @@ public class JwtHandler {
         return null;
     }
 
-    public String getPartyColorByUsername(String nick) {
+    public static String getPartyColorByUsername(EntityManager entityManager, String nick) {
         String queryBody = "SELECT party.id as 'party_id2', name, color, tag FROM party INNER JOIN user ON user.party_id = party.id WHERE user.username = :username";
         Query query = entityManager.createNativeQuery(queryBody);
         query.setParameter("username", nick);

@@ -5,7 +5,6 @@ var messageForm = document.getElementById('messageForm');
 var messageInput = document.getElementById('message');
 var messageArea = document.getElementById('messageArea');
 var connectingElement = document.getElementById('connecting');
-
 var stompClient = null;
 
 function connect(username) {
@@ -25,7 +24,7 @@ function onConnected() {
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
         {},
-        JSON.stringify({sender: username, type: 'JOIN'})
+        JSON.stringify({sender: document.getElementById("username_text").innerText, type: 'JOIN'})
     )
 
     connectingElement.classList.add('hidden');
@@ -40,9 +39,9 @@ function onError(error) {
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
-    if(messageContent && stompClient) {
+    if (messageContent && stompClient) {
         var chatMessage = {
-            sender: username,
+            sender: document.getElementById("username_text").innerText,
             content: messageInput.value,
             type: 'CHAT'
         };
@@ -52,13 +51,12 @@ function sendMessage(event) {
     event.preventDefault();
 }
 
-
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
-    console.log(message);
-
+    let senderObject = JSON.parse(message.sender);
+    message.sender = senderObject.sender;
+    message.color = senderObject.color;
     var messageElement = document.createElement('li');
-
     if(message.type === 'JOIN') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
@@ -70,7 +68,7 @@ function onMessageReceived(payload) {
         var avatarElement = document.createElement('i');
         var avatarText = document.createTextNode(message.sender[0]);
         avatarElement.appendChild(avatarText);
-        avatarElement.style['background-color'] = getAvatarColor(message.sender);
+        avatarElement.style['background-color'] = message.color;
         messageElement.appendChild(avatarElement);
         var usernameElement = document.createElement('span');
         var usernameText = document.createTextNode(message.sender);

@@ -5,12 +5,10 @@ let pollData = document.getElementById("pollData");
 window.addEventListener("DOMContentLoaded", () => {
     let result = JSON.parse(pollData.innerText);
     if (didVote()) {
-        console.log(1)
         poll.style.display = "none";
         pollResults.style.display = "block";
         addPoll(result);
     } else {
-        console.log(2)
         poll.style.display = "block";
         pollResults.style.display = "none";
 

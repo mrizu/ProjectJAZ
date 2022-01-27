@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (getCookie("error_authenticating") == null || getCookie("error_authenticating") == "false") {
         document.getElementById("error").style.display = "none";
     } else {
-        document.getElementById("error").style.visibility = "visible";
+        document.getElementById("error").style.display = "block";
         document.cookie = "error_authenticating=false"
     }
 });

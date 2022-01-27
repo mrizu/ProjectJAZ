@@ -84,6 +84,7 @@ public class UserService {
             return -1;
         }
     }
+
     private int getPartyIdByName(String party_name) {
         String queryBody = "SELECT * FROM party WHERE party.name = :party_name";
         Query query = entityManager.createNativeQuery(queryBody);
