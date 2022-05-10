@@ -1,3 +1,6 @@
-Live chat website made in Java using Spring framework and HTML, CSS, JS, SQL.
+Live chat website made in Java using Spring framework and HTML, CSS, JS, SQL. 
 
-Users could also vote in a poll for a political party they want to win.
+Users also have an option to vote in a poll.
+
+User accounts fully connected to MySQL database.
+
